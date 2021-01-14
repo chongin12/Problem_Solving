@@ -1,1 +1,8 @@
 # Problem_Solving
+
+환경 : repl.it
+
+컴파일 방법 : 
+1. ./acmicpc.net 디렉토리에 문제이름.cpp파일 추가
+2. .replit 파일의 problemId 변수를 해당 문제 번호로 바꾸기
+3. repl.it 환경 내에서 run.
