@@ -1,0 +1,1 @@
+print(5-abs(4-(int(input())-1)%8))
