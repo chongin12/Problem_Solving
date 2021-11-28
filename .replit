@@ -2,4 +2,4 @@
 #run = "problemId=9466 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
 
 language = "python"
-run = "problemId=1252 ; python3 ./acmicpc.net/${problemId}.py"
+run = "problemId=1333 ; python3 ./acmicpc.net/${problemId}.py"
