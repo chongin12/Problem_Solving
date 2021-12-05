@@ -1,6 +1,6 @@
-#language = "cpp"
-#run = "problemId=1019 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
+language = "cpp"
+run = "problemId=14289 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
 
 
-language = "python"
-run = "problemId=1434 ; python3 ./acmicpc.net/${problemId}.py"
+#language = "python"
+#run = "problemId=1434 ; python3 ./acmicpc.net/${problemId}.py"
