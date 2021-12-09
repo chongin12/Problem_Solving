@@ -31,14 +31,7 @@ int main(){
 	for(int i=1; i<=N; ++i){
 		dp[i][1]=1;
 	}
-	root=1;
-	for(int i=1; i<=N; ++i){
-		if(G[i].size()!=1){
-			root=i; // 리프노드가 아닌 것 중 하나를 루트로 설정.
-			//예외 : 노드가 두개밖에 없다면?
-			break;
-		}
-	}
+	root=1;// 루트는 아무거나 잡아도 됨.
 	dfs(root, 0);
 	cout << min(dp[root][0], dp[root][1])<<'\n';
 }
