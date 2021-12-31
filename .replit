@@ -1,6 +1,6 @@
 language = "cpp"
-run = "problemId=4225 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
+run = "problemId=5670 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
 
 
 #language = "python"
-#run = "problemId=1672 ; python3 ./acmicpc.net/${problemId}.py"
+#run = "problemId=ZOAC4 ; python3 ./acmicpc.net/${problemId}.py"
