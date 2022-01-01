@@ -5,6 +5,7 @@ double dp[201][201];
 double G[201][201];
 int visit[201][201];
 int main(){
+	ios::sync_with_stdio(0); cin.tie(0);
 	int N,M; cin>>N>>M;
 	for(int i=0; i<N; ++i){
 		for(int j=0; j<N; ++j){
