@@ -1,5 +1,5 @@
 #language = "cpp"
-#run = "problemId=17401 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
+#run = "problemId=20149 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
 
 
 #language = "python"
@@ -7,4 +7,4 @@
 
 # 대회 한정
 language = "cpp"
-run = "problemId=B ; contestId=738 ; g++ -std=c++17 -o ./contest${contestId}/${problemId} ./contest${contestId}/${problemId}.cpp ; ./contest${contestId}/${problemId} ; rm ./contest${contestId}/${problemId}"
+run = "problemId=B ; contestId=749 ; g++ -std=c++17 -o ./contest${contestId}/${problemId} ./contest${contestId}/${problemId}.cpp ; ./contest${contestId}/${problemId} ; rm ./contest${contestId}/${problemId}"
