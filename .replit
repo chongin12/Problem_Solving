@@ -1,9 +1,9 @@
-#language = "cpp"
-#run = "problemId=1402 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
+language = "cpp"
+run = "problemId=1028 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
 
 
-language = "python"
-run = "problemId=1919 ; python3 ./acmicpc.net/${problemId}.py"
+#language = "python"
+#run = "problemId=1942 ; python3 ./acmicpc.net/${problemId}.py"
 
 # 대회 한정
 #language = "cpp"
