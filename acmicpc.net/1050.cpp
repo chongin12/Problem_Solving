@@ -2,7 +2,6 @@
 using namespace std;
 using ll=long long int;
 map<string, ll> m;
-vector<string> v;
 vector<vector<pair<ll,string> > > ex(51);
 int main(){
 	ios::sync_with_stdio(0); cin.tie(0);
