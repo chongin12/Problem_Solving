@@ -1,11 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll=long long int;
-ll A,B,K;
-ll dp[1000100];
-ll visit[1000100];
+ll dp[1000001]; // dp[i]:Sk(i)의 최소값
+bool visit[1000001];
+ll nxt[1000001];
 ll p[10];
 ll calc(ll x){
+	if(x<=1000000 && nxt[x]) return nxt[x];
 	ll ret=0;
 	while(x){
 		ret+=p[x%10];
@@ -14,49 +15,63 @@ ll calc(ll x){
 	if(ret>1000000) return calc(ret);
 	return ret;
 }
-ll f(ll x){
-	if(dp[x]) return dp[x];
-	ll minn=x;
-	/*
-	현재 돌고있을 때 중복되어 visit를 만난게 아닌,
-	이미 사이클이 한번 돌았던 곳의 visit를 만났다면?
-	내가 지나간 곳을 체크해줄 필요가 있음.
-	*/
-	bool chk[1000001];
-	if(visit[x]){
-		ll tmp=x;
-		while(!visit[tmp]){
-			visit[tmp]=1;
-			minn=min(minn, tmp);
-			tmp=calc(tmp);
+void f(vector<ll> acc){
+	ll cur=acc.back();
+	if(!dp[cur] && visit[cur]){ // cur부터 시작하는 사이클을 이 사이클의 최솟값으로 모두 채움.
+		ll tmp=nxt[cur];
+		ll minn=cur;
+		while(tmp!=cur){
+			minn=min(minn,tmp);
+			tmp=nxt[tmp];
 		}
-		dp[x]=minn;
-		ll tt=tmp;
-		tmp=calc(tmp);
-		while(tmp!=tt){
+		dp[cur]=minn;
+		tmp=nxt[cur];
+		while(tmp!=cur){
 			dp[tmp]=minn;
-			tmp=calc(tmp);
+			tmp=nxt[tmp];
 		}
-		dp[tt]=minn;
-		return dp[x];
+		for(int i=acc.size()-1; i>=0; --i){
+			if(!dp[acc[i]]){
+				minn=min(minn,acc[i]);
+				dp[acc[i]]=minn;
+			}
+		}
+		return;
 	}
-	visit[x]=1;
-	return dp[x]=min(minn,f(calc(x)));
+	if(dp[cur]){
+		ll minn=dp[cur];
+		for(int i=acc.size()-1; i>=0; --i){
+			if(!dp[acc[i]]){
+				minn=min(minn,acc[i]);
+				dp[acc[i]]=minn;
+			}
+		}
+		return;
+	}
+	acc.push_back(nxt[cur]);
+	visit[cur]=true;
+	f(acc);
 }
 int main(){
-	cin>>A>>B>>K;
-	for(int i=0; i<10; ++i){
+	ll A,B,K; cin>>A>>B>>K;
+	for(ll i=0; i<10; ++i){
 		p[i]=pow(i,K);
+		// cout << p[i] << '\n';
 	}
-	for(int i=1; i<=1000000; ++i){
-		if(!dp[i]) dp[i]=f(i);
-		// cout << "dp["<<i<<"]="<<dp[i]<<'\n';
+	for(ll i=1; i<=1000000; ++i){
+		nxt[i]=calc(i);
+		// cout << "nxt["<<i<<"]="<< nxt[i] << '\n';
 	}
-	// cout << dp[24887]<<'\n';
+	
 	ll res=0;
-	for(int i=A; i<=B; ++i){
+	for(ll i=A; i<=B; ++i){
+		if(!dp[i]) {
+			vector<ll> temp;
+			temp.push_back(i);
+			f(temp);
+		} 
 		res+=dp[i];
-		// cout << "dp["<<i<<"]="<<dp[i]<<'\n';
 	}
 	cout << res << '\n';
+	
 }

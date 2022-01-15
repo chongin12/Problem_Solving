@@ -1,10 +1,10 @@
 #language = "cpp"
-#run = "problemId=1131 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
+run = "problemId=1146 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
 
 
-language = "python"
-run = "problemId=4562 ; python3 ./acmicpc.net/${problemId}.py"
+#language = "python"
+#run = "problemId=test ; python3 ./acmicpc.net/${problemId}.py"
 
 # 대회 한정
 #language = "cpp"
-#run = "problemId=B ; contestId=749 ; g++ -std=c++17 -o ./contest${contestId}/${problemId} ./contest${contestId}/${problemId}.cpp ; ./contest${contestId}/${problemId} ; rm ./contest${contestId}/${problemId}"
+#run = "problemId=B ; contestId=753 ; g++ -std=c++17 -o ./contest${contestId}/${problemId} ./contest${contestId}/${problemId}.cpp ; ./contest${contestId}/${problemId} ; rm ./contest${contestId}/${problemId}"
