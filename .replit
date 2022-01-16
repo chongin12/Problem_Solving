@@ -7,4 +7,4 @@ run = "problemId=1146 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.n
 
 # 대회 한정
 #language = "cpp"
-#run = "problemId=B ; contestId=753 ; g++ -std=c++17 -o ./contest${contestId}/${problemId} ./contest${contestId}/${problemId}.cpp ; ./contest${contestId}/${problemId} ; rm ./contest${contestId}/${problemId}"
+#run = "problemId=B ; contestId=746 ; g++ -std=c++17 -o ./contest${contestId}/${problemId} ./contest${contestId}/${problemId}.cpp ; ./contest${contestId}/${problemId} ; rm ./contest${contestId}/${problemId}"
