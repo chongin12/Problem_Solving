@@ -3,7 +3,7 @@
 
 
 #language = "python"
-run = "problemId=4623 ; python3 ./acmicpc.net/${problemId}.py"
+run = "problemId=4635 ; python3 ./acmicpc.net/${problemId}.py"
 
 # 대회 한정
 #language = "cpp"
