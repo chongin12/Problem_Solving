@@ -1,10 +1,12 @@
 #language = "cpp"
-#run = "problemId=1307 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
+#run = "printf \"\\e[?2004l\"; problemId=1307 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
 
 
 #language = "python"
-run = "problemId=4635 ; python3 ./acmicpc.net/${problemId}.py"
+run = "printf \"\\e[?2004l\"; problemId=4635 ; python3 ./acmicpc.net/${problemId}.py"
 
 # 대회 한정
 #language = "cpp"
-#run = "problemId=B ; contestId=746 ; g++ -std=c++17 -o ./contest${contestId}/${problemId} ./contest${contestId}/${problemId}.cpp ; ./contest${contestId}/${problemId} ; rm ./contest${contestId}/${problemId}"
+#run = "printf \"\\e[?2004l\"; problemId=B ; contestId=746 ; g++ -std=c++17 -o ./contest${contestId}/${problemId} ./contest${contestId}/${problemId}.cpp ; ./contest${contestId}/${problemId} ; rm ./contest${contestId}/${problemId}"
+
+# bracketed paste mode 해제하는 법 : printf "\e[?2004l\" 한번 해주기.
