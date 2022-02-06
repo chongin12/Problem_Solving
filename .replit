@@ -1,5 +1,5 @@
 #language = "cpp"
-run = "printf \"\\e[?2004l\"; problemId=3295 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
+run = "printf \"\\e[?2004l\"; problemId=10999 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
 
 
 #language = "python"
