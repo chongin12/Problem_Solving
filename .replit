@@ -3,7 +3,7 @@
 
 
 #language = "python"
-run = "printf \"\\e[?2004l\"; problemId=4922 ; python3 ./acmicpc.net/${problemId}.py"
+run = "printf \"\\e[?2004l\"; problemId=5063 ; python3 ./acmicpc.net/${problemId}.py"
 
 # 대회 한정
 #language = "cpp"
