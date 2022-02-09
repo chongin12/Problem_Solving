@@ -1,9 +1,9 @@
 #language = "cpp"
-#run = "printf \"\\e[?2004l\"; problemId=17353 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
+run = "printf \"\\e[?2004l\"; problemId=14572 ; g++ -std=c++17 -o ./acmicpc.net/${problemId} ./acmicpc.net/${problemId}.cpp ; ./acmicpc.net/${problemId} ; rm ./acmicpc.net/${problemId}" 
 
 
 #language = "python"
-run = "printf \"\\e[?2004l\"; problemId=5074 ; python3 ./acmicpc.net/${problemId}.py"
+#run = "printf \"\\e[?2004l\"; problemId=5074 ; python3 ./acmicpc.net/${problemId}.py"
 
 # 대회 한정
 #language = "cpp"
