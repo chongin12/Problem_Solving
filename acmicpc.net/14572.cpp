@@ -9,8 +9,10 @@ vector<node> v;
 ll effi(int l, int r, int arr[]){
 	int r1=0,r2=0;
 	for(int i=1; i<=30; ++i){
-		if(arr[i]) r1++;
-		if(arr[i]==r-l+1) r2++;
+		if(arr[i]) {
+			r1++;
+			if(arr[i]==r-l+1) r2++;
+		}
 	}
 	return (r1-r2)*(r-l+1);
 }
