@@ -8,20 +8,13 @@ bool isLeap(int x){
     return false;
 }
 int main(){
-    cout << "hello world"<<'\n';
     int a,b,c; cin>>a>>b>>c;
     int d,e,f; cin>>d>>e>>f;
-    int year=a, month=b, day=c;
-    if(a+1000==d && b>=e && c>=f){
-        cout << "gg\n";
-    }
-    if(a+1000<d){
-        cout << "gg\n";
-    }
-    int cnt=0;
+    int year=a, month=b, day=c-1;
+    int cnt=-1;
     while(1){
-        if(year==d && month==e && day==f) break;
-        
+        cnt++;
+        day++;
         if(day>D[month]){
             day=1;
             month++;
@@ -30,8 +23,15 @@ int main(){
             month=1;
             year++;
         }
-        cnt++;
-        day++;
+        if(isLeap(year)) D[2]=29;
+        else D[2]=28;
+        if(year-1000==a && month==b && day==c){
+            cout << "gg\n";
+            return 0;
+        }
+        if(year==d && month==e && day==f) break;
+        
+        
     }
     cout << "D-"<<cnt<<'\n';
 }
