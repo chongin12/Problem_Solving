@@ -30,7 +30,7 @@ int main(){
         for(int i=0; i<N-w+1; ++i){
             int j=i+w-1;
             dp[i][j][1]=max(dp[i][j][1], prefixSum(i, j));
-            for(int range=1; range<=(w+1)/2; ++range){
+            for(int range=1; range<=min(M,(w+1)/2); ++range){
                 // dp[i][j][range] 채울 예정
                 int &toFill = dp[i][j][range];
                 if(i!=j) toFill=max(toFill, dp[i][j-1][range]);
