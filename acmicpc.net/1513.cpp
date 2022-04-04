@@ -21,11 +21,11 @@ void init(){
             if(j==0 || k==0) combi[i][j][k]=1;
             else combi[i][j][k]=combi[i-1][j][k-1]+combi[i-1][j-1][k];
             combi[i][j][k]%=MOD;
-            //cout << "combi["<<i<<"]["<<j<<"]["<<k<<"]="<<combi[i][j][k]<<'\n';
         }
     }
 }
 int main(){
+    ios::sync_with_stdio(0); cin.tie(0);
     init();
     ll N, M, C; cin>>N>>M>>C;
     vector<pair<ll, ll> > room;
@@ -43,16 +43,15 @@ int main(){
     sort(temp.begin(), temp.end(), [](pair<ll, pair<ll, ll> > A, pair<ll, pair<ll, ll> > B){
         return A.second < B.second;
     });
-    for(int i=1; i<C; ++i){ // i만큼 차이나는 오락실
+    for(int i=1; i<C; ++i){
         for(int j=0; j<C-i; ++j){
-            int k=j+i; // 정렬된 상태에서 j번째 오락실에서 k번째 오락실로 가는 경우의 수. 다른 오락실이랑 겹치면 안된다.
+            int k=j+i;
             ll roomNumj=temp[j].first, roomNumk=temp[k].first;
             cache[roomNumj][roomNumk]=f(room[roomNumj], room[roomNumk]);
             for(int w=j+1; w<=k-1; ++w){
                 ll roomNumw=temp[w].first;
                 cache[roomNumj][roomNumk]=(cache[roomNumj][roomNumk]+MOD-(cache[roomNumj][roomNumw]*f(room[roomNumw],room[roomNumk]))%MOD)%MOD;
             }
-            //cout << "cache["<<roomNumj<<"]["<<roomNumk<<"]="<<cache[roomNumj][roomNumk]<<'\n';
         }
     }
     //cache[C][0~C-1]
@@ -63,7 +62,6 @@ int main(){
             ll roomNumj=temp[j].first;
             cache[C][roomNumi]=(cache[C][roomNumi]+MOD-(cache[C][roomNumj]*f(room[roomNumj], room[roomNumi]))%MOD)%MOD;
         }
-        //cout << "cache[C]["<<roomNumi<<"]="<<cache[C][roomNumi]<<'\n';
     }
     //cache[0~C-1][C+1]
     for(int i=0; i<C; ++i){
@@ -72,17 +70,14 @@ int main(){
             if(i==j) continue;
             cache[i][C+1]=(cache[i][C+1]+MOD-(cache[i][j]*f(room[j],room[C+1]))%MOD)%MOD;
         }
-        //cout << "cache["<<i<<"][C+1]="<<cache[i][C+1]<<'\n';
     }
     //cache[C][C+1]
     cache[C][C+1]=f(room[C], room[C+1]);
     for(int j=0; j<C; ++j){
         cache[C][C+1]=(cache[C][C+1]+MOD-(cache[C][j]*f(room[j],room[C+1]))%MOD)%MOD;
     }
-    //cout << "cache[C][C+1]="<<cache[C][C+1]<<'\n';
     dp[0][0][C]=1;
     dp[0][1][0]=cache[C][0];
-    //cout << "dp["<<0<<"]["<<1<<"]["<<0<<"]="<<dp[0][1][0] << '\n';
     //dp 채우기
     for(int i=1; i<C; ++i){
         dp[i][0][C]=1;
@@ -105,9 +100,6 @@ int main(){
                     dp[i][j][i]+=dp[i-1][j-1][k]*cache[k][i];
                     dp[i][j][i]%=MOD;
                 }
-            }
-            for(int k=0; k<=i; ++k){
-                //cout << "dp["<<i<<"]["<<j<<"]["<<k<<"]="<<dp[i][j][k] << '\n';
             }
         }
     }
