@@ -1,26 +1,32 @@
-L = int(input())
-a = list(map(int, input().split()))
-n = int(input())
-small=[]
-big=[]
-result=0
-k = 1
-a.sort()
-for i in a:
-    if i > n:
-        big.append(i)
-    elif i < n:
-        small.append(i)
-    elif i == n:
-        k = 0
+G=[[] for i in range(1001)]
 
+def longestStrChain(words):
+    res=0
+    words.sort(key=lambda x : len(x))
+    print(words)
+    for i in range(len(words)):
+        for j in range(i+1, len(words)):
+            if len(words[i])==len(words[j]):continue
+            elif len(words[i])+1<len(words[j]):break
+            shift=0
+            for k in range(len(words[i])):
+                if words[i][k]!=words[j][k+shift]:
+                    shift+=1
+                    if shift>=2:break
+                    if words[i][k]!=words[j][k+shift]:
+                        shift=2
+                        break
+            if shift<=1:
+                G[i].append(j)
+                print(f"G[{i}].append({j})")
+    for i in range(len(words)):
+        res=max(res,dfs(i))
+    return res
 
-x = n - small[-1] - 1 # 왼쪽으로 갈 수 있는 칸수
-y = big[0] - n - 1 # 오른쪽으로 갈 수 있는 칸수
-result = (x+1) * (y+1) - 1
+def dfs(x):
+    ret=0
+    for i in G[x]:
+        ret=max(ret,dfs(i))
+    return ret+1
 
-
-if k == 0:
-    print(0)
-else:
-    print(result)
+print(longestStrChain(["xbc","pcxbcf","xb","cxbc","pcxbc"]))
