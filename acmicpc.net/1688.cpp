@@ -31,9 +31,22 @@ bool isCross(line A, line B){
     int c=ccw(B.A, B.B, A.A);
     int d=ccw(B.A, B.B, A.B);
     int ccwb=c*d;
-    //cout << "ccwa : " << ccwa << ", ccwb : " << ccwb << '\n';
     if(a==0 && b==0 && c==0 && d==0) return false;
     return (ccwa<=0) && (ccwb<=0);
+}
+bool isInside(vector<pos> &v, pos T) {
+    int cnt=0;
+    line K(T, pos(1000000001LL, T.y+1));
+    for(int i=0; i<v.size(); ++i){
+        line H(v[i], pos(v[(i+1)%v.size()]));
+        if(H.B<H.A) swap(H.A, H.B);
+        if(H.A<=K.A && K.A<=H.B && (H.A.y-H.B.y)*K.A.x+(H.B.x-H.A.x)*K.A.y+H.A.x*H.B.y-H.B.x*H.A.y==0){
+            cnt=1;
+            break;
+        }
+        if(isCross(K, H)) cnt++;
+    }
+    return cnt%2;
 }
 int main(){
     ios::sync_with_stdio(0); cin.tie(0);
@@ -44,23 +57,8 @@ int main(){
         v.push_back({a,b});
     }
     for(int i=0; i<3; ++i){
-        //cout << "=> i : " << i << '\n';
         ll a,b; cin>>a>>b;
-        int cnt=0;
-        line K(pos(a,b), pos(1000000001LL, b+1));
-        for(int j=0; j<N; ++j){
-            //cout << "j : " << j << '\n';
-            line H(v[j], pos(v[(j+1)%N]));
-            if(H.B<H.A) swap(H.A, H.B);
-            //점이 직선 위에 있으면 무조건 포함.
-            if(H.A<=K.A && K.A<=H.B && (H.A.y-H.B.y)*K.A.x+(H.B.x-H.A.x)*K.A.y+H.A.x*H.B.y-H.B.x*H.A.y==0){
-                cnt=1;
-                break;
-            }
-            if(isCross(K, H)) cnt++;
-        }
-        //cout << "cnt : " << cnt << '\n';
-        if(cnt%2==1){
+        if(isInside(v, pos(a,b))){
             cout << "1\n";
         } 
         else {
