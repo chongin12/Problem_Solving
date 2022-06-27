@@ -39,6 +39,9 @@ bool cmp(pos A, pos B){
     return false;
 }
 vector<pos> convexHull(vector<pos> v){
+    sort(v.begin(), v.end(), cmp0);
+    K=v[0];
+    sort(v.begin()+1, v.end(), cmp);
     vector<pos> st;
     st.push_back(v[0]);
     for(int i=1; i<v.size(); ++i){
@@ -61,6 +64,8 @@ vector<pos> convexHull(vector<pos> v){
     return st;
 }
 bool isCross(line A, line B){
+    if(A.B < A.A) swap(A.A, A.B);
+    if(B.B < B.A) swap(B.A, B.B);
     int a=ccw(A.A, A.B, B.A);
     int b=ccw(A.A, A.B, B.B);
     int ccwa=a*b;
@@ -108,12 +113,6 @@ int main(){
             ll a,b; cin>>a>>b;
             black.push_back(pos(a,b));
         }
-        sort(white.begin(), white.end(), cmp0);
-        sort(black.begin(), black.end(), cmp0);
-        K=white[0];
-        sort(white.begin()+1, white.end(), cmp);
-        K=black[0];
-        sort(black.begin()+1, black.end(), cmp);
         vector<pos> convWhite=convexHull(white);
         vector<pos> convBlack=convexHull(black);
         bool flag=true;
