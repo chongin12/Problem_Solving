@@ -11,29 +11,16 @@ int main(){
         v.push_back({a,b});
     }
     ll x,y; cin>>x>>y;
-    bool flag[4]={0,0,0,0}; // 동서남북
+    bool f[4]={0,0,0,0};
     for(int i=0; i<N; ++i){
-        if(abs(x-v[i].first)<=abs(y-v[i].second)){
-            if(y<v[i].second){
-                flag[3]=true;
-            }
-            else{
-                flag[2]=true;
-            }
-        }
-        if(abs(x-v[i].first)>=abs(y-v[i].second)){
-            if(x<v[i].first){
-                flag[1]=true;
-            }
-            else{
-                flag[0]=true;
-            }
-        }
+        int A=abs(x-v[i].first), B=abs(y-v[i].second);
+        if(A<=B)
+            if(y<v[i].second) f[3]=true;
+            else f[2]=true;
+
+        if(A>=B)
+            if(x<v[i].first) f[1]=true;
+            else f[0]=true;
     }
-    if(flag[0] && flag[1] && flag[2] && flag[3]){
-        cout << "NO\n";
-    }
-    else{
-        cout << "YES\n";
-    }
+    cout << (f[0]&&f[1]&&f[2]&&f[3]?"NO\n":"YES\n");
 }
