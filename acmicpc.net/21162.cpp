@@ -3,6 +3,7 @@ using namespace std;
 using ll=long long;
 template<ll P, ll M> struct Hasing {
     vector<ll> H,B;
+    int offset=0;
     void build(const string &S){
         H.resize(S.size()+1);
         B.resize(S.size()+1);
@@ -13,14 +14,8 @@ template<ll P, ll M> struct Hasing {
         for(int i=1; i<=S.size(); ++i){
             B[i] = B[i-1] * P % M;
         }
+        offset=0;
     }
-    ll get(int s, int e){
-        ll res = (H[e] - H[s-1] * B[e-s+1]) % M;
-        return res >= 0 ? res : res + M;
-    }
-};
-template<ll P, ll M> struct Hasing2 {
-    vector<ll> H,B;
     void build(const vector<int> &S){
         H.resize(S.size()+1);
         B.resize(S.size()+1);
@@ -31,22 +26,24 @@ template<ll P, ll M> struct Hasing2 {
         for(int i=1; i<=S.size(); ++i){
             B[i] = B[i-1] * P % M;
         }
+        offset=1;
     }
     ll get(int s, int e){
-        s++, e++;
+        s+=offset;
+        e+=offset;
         ll res = (H[e] - H[s-1] * B[e-s+1]) % M;
         return res >= 0 ? res : res + M;
     }
 };
-Hasing2<524287, 998244353> H;
+Hasing<524287, 998244353> H;
 vector<int> str;
 int K,N;
 bool comp(int a, int b){
-    int l=0, r=N-1;
-    while(l<r){
+    int l=0, r=N;
+    while(l<r-1){
         int mid=(l+r+1)/2;
         if(H.get(a, a+mid-1)!=H.get(b, b+mid-1)){
-            r=mid-1;
+            r=mid;
         }
         else{
             l=mid;
@@ -78,4 +75,5 @@ int main(){
     for(int i=0; i<N; ++i){
         cout << str[i+res[K-1]] << " ";
     }
+    cout << '\n';
 }
