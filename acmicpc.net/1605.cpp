@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-using ll=long long int;
 pair<vector<int>, vector<int> > SuffixArrayAndLCP(const string &str) {
     int n = str.size();
     vector<int> sa(n), pos(n), temp(n);
@@ -29,13 +28,15 @@ pair<vector<int>, vector<int> > SuffixArrayAndLCP(const string &str) {
     }
     return {sa,lcp};
 }
+
 int main(){
-    ios::sync_with_stdio(0); cin.tie(0);
+    int L; cin>>L;
     string str; cin>>str;
-    vector<int> r = (SuffixArrayAndLCP(str).second);
-    ll res=(1LL+str.size())*str.size()/2;
-    for(auto it:r){
-        res-=(ll)it;
+    pair<vector<int>, vector<int> > p=SuffixArrayAndLCP(str);
+    vector<int> &lcp = p.second;
+    int res=-1;
+    for(int i=0; i<lcp.size(); ++i){
+        res=max(res,lcp[i]);
     }
     cout << res << '\n';
 }

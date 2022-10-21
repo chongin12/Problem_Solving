@@ -31,11 +31,16 @@ pair<vector<int>, vector<int> > SuffixArrayAndLCP(const string &str) {
 }
 int main(){
     ios::sync_with_stdio(0); cin.tie(0);
-    string str; cin>>str;
-    vector<int> r = (SuffixArrayAndLCP(str).second);
-    ll res=(1LL+str.size())*str.size()/2;
-    for(auto it:r){
-        res-=(ll)it;
+    int T; cin>>T;
+    while(T--){
+        string str; cin>>str;
+        vector<int> lcp = (SuffixArrayAndLCP(str).second);
+        int res=0;
+        for(int i=1; i<lcp.size(); ++i){
+            if(lcp[i]>lcp[i-1]){
+                res+=lcp[i]-lcp[i-1];
+            }
+        }
+        cout << res << '\n';
     }
-    cout << res << '\n';
 }

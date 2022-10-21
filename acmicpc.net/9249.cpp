@@ -31,11 +31,25 @@ pair<vector<int>, vector<int> > SuffixArrayAndLCP(const string &str) {
 }
 int main(){
     ios::sync_with_stdio(0); cin.tie(0);
-    string str; cin>>str;
-    vector<int> r = (SuffixArrayAndLCP(str).second);
-    ll res=(1LL+str.size())*str.size()/2;
-    for(auto it:r){
-        res-=(ll)it;
+    string S,T; cin>>S>>T;
+    string newStr=S+"#"+T;
+    pair<vector<int>, vector<int> > sl = SuffixArrayAndLCP(newStr);
+    int k=S.size();
+    int n=newStr.size();
+    vector<int> &sa = sl.first;
+    vector<int> &lcp = sl.second;
+    int res=-1, residx=0;
+    for(int i=1; i<sa.size(); ++i){
+        if((sa[i-1]<k) != (sa[i]<k)){
+            if(res<lcp[i]){
+                res=lcp[i];
+                residx=max(sa[i-1],sa[i]);
+            }
+        }
     }
     cout << res << '\n';
+    for(int i=0; i<res; ++i){
+        cout << newStr[i+residx];
+    }
+    cout << '\n';
 }
