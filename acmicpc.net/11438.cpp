@@ -1,25 +1,24 @@
 // HLD 를 이용한 풀이
 #include <bits/stdc++.h>
 using namespace std;
-using ll=long long;
-const int MAX_V = 100101;
-ll seg[MAX_V*4];
-ll Query(int L, int R, int n, int l, int r){
+const int MAX_V = 100001;
+int seg[MAX_V*2];
+int Query(int L, int R, int n, int l, int r){
     if(L<=l && r<=R) return seg[n];
     if(R<l || r<L) return 0; 
     int mid=(l+r)/2;
-    return max(Query(L, R, n*2, l, mid), Query(L, R, n*2+1, mid+1, r));
+    return Query(L, R, n*2, l, mid) + Query(L, R, n*2+1, mid+1, r);
 }
-ll Update(int idx, ll val, int n, int l, int r){
+int Update(int idx, int val, int n, int l, int r){
     if(r<idx || idx<l) return seg[n];
     if(l==r) return seg[n]=val;
     int mid=(l+r)/2;
-    return seg[n]=max(Update(idx, val, n*2, l, mid),Update(idx,val,n*2+1,mid+1,r));
+    return seg[n]=Update(idx, val, n*2, l, mid)+Update(idx,val,n*2+1,mid+1,r);
 }
-ll SegQuery(int u, int v){
+int SegQuery(int u, int v){
     return Query(u, v, 1, 1, MAX_V);
 }
-void SegUpdate(int idx, ll val){
+void SegUpdate(int idx, int val){
     Update(idx, val, 1, 1, MAX_V);
 }
 /*
@@ -54,46 +53,36 @@ void DFS2(int v) {
     }
     Out[v] = cnt;
 }
-ll PathQuery(int u, int v){
-    ll ret=0;
+int PathQuery(int u, int v){
+    int ret=0;
     for(; Top[u]!=Top[v]; u=Par[Top[u]]){
         if(Dep[Top[u]] < Dep[Top[v]]) swap(u,v);
-        ret=max(ret,SegQuery(In[Top[u]], In[u]));
+        ret+=SegQuery(In[Top[u]], In[u]);
     }
     if(In[u] > In[v]) swap(u, v);
-    ret=max(ret,SegQuery(In[u]+1, In[v]));
+    ret+=SegQuery(In[u], In[v]);
     return ret;
 }
-struct node {
-    int u, v; ll w;
-    node(int u, int v, ll w):u(u),v(v),w(w){}
-};
-vector<node> V;
+int LCA(int u, int v){
+    for(; Top[u]!=Top[v]; u=Par[Top[u]]){
+        if(Dep[Top[u]] < Dep[Top[v]]) swap(u,v);
+    }
+    if(In[u]>In[v]) swap(u,v);
+    return u;
+}
 int main(){
     ios::sync_with_stdio(0); cin.tie(0);
     int N; cin>>N;
     for(int i=0; i<N-1; ++i){
-        int u,v; ll w; cin>>u>>v>>w;
+        int u,v; cin>>u>>v;
         G[u].push_back(v);
         G[v].push_back(u);
-        V.push_back(node(u,v,w));
     }
     DFS1(1);
     DFS2(1);
-    for(auto it:V){
-        if(it.u==Par[it.v]) SegUpdate(In[it.v], it.w);
-        else SegUpdate(In[it.u], it.w);
-    }
     int M; cin>>M;
     for(int i=0; i<M; ++i){
-        ll q,a,b; cin>>q>>a>>b;
-        if(q==1){
-            node k=V[a-1];
-            if(k.u==Par[k.v]) SegUpdate(In[k.v], b);
-            else SegUpdate(In[k.u], b);
-        }
-        else{
-            cout << PathQuery(a, b) << '\n';
-        }
+        int u,v; cin>>u>>v;
+        cout << LCA(u,v) << '\n';
     }
 }
