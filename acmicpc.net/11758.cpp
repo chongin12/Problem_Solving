@@ -2,9 +2,9 @@
 #define x first
 #define y second
 using namespace std;
-using pii=pair<int,int>;
-int ccw(pii a, pii b, pii c){
-	int t=(a.x*b.y+b.x*c.y+c.x*a.y)-(a.y*b.x+b.y*c.x+c.y*a.x);
+using Point=pair<int,int>;
+int ccw(const Point &p1, const Point &p2, const Point &p3){
+	int t=(p2.x-p1.x)*(p3.y-p2.y)-(p3.x-p2.x)*(p2.y-p1.y);
 	if(t>0) return 1;
 	if(t<0) return -1;
 	return 0;
