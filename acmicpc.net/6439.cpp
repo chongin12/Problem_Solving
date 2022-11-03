@@ -21,9 +21,20 @@ bool Cross(Point a, Point b, Point c, Point d){
 	return ab<=0 && cd<=0;
 }
 int main(){
-	ll a, b, c, d; cin>>a>>b>>c>>d;
-	Point A(a,b), B(c,d);
-	cin>>a>>b>>c>>d;
-	Point C(a,b), D(c,d);
-	cout << Cross(A,B,C,D) << '\n';
+    ios::sync_with_stdio(0); cin.tie(0);
+    int T; cin>>T;
+    while(T--){
+        ll a, b, c, d, e, f, g, h; cin>>a>>b>>c>>d>>e>>f>>g>>h;
+        Point A(a,b), B(c,d);
+        bool flag=false;
+        for(int i=min(f,h); i<=max(f,h); ++i){
+            Point C(min(e,g),i), D(max(e,g),i);
+            if(Cross(A,B,C,D)){
+                flag=true;
+                break;
+            }
+        }
+        if(flag) cout << "T\n";
+        else cout << "F\n";
+    }
 }
