@@ -1,28 +1,24 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
-int L;
-int visited[100];
-void f(int n){
-    if(n==L+1){
-        int res[100]={};
-        for(int i=1; i<=L; ++i){
-            res[visited[i]] = i;
-        }
-        for(int i=1; i<=L; ++i){
-            cout << res[i] << " ";
-        }
-        cout << '\n';
-        return;
-    }
-    for(int i=1; i<=L; ++i){
-        if(visited[i]) continue;
-        visited[i]=n;
-        f(n+1);
-        visited[i]=0;
-    }
-}
+int dp[1000];
+int arr[1000];
 int main(){
-    ios::sync_with_stdio(0); cin.tie(0);
-    cin>>L;
-    f(1);
+    int N; cin >> N;
+    for(int i=0; i<N; ++i){
+        cin >> arr[i];
+    }
+
+    int res=-1;
+
+    for(int i=0; i<N; ++i){
+        dp[i] = max(dp[i], 1);
+
+        for(int j=i+1; j<N; ++j){
+            if(arr[i] < arr[j]) {
+                dp[i] = max(dp[j], dp[i]+1);
+            }
+        }
+        res = max(res, dp[i]);
+    }
+    cout << res << '\n';
 }
