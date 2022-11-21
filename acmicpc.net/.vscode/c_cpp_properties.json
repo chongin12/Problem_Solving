@@ -7,7 +7,7 @@
             ],
             "defines": [],
             "macFrameworkPath": [],
-            "compilerPath": "/Library/Developer/CommandLineTools/usr/bin/g++",
+            "compilerPath": "/usr/bin/g++",
             "intelliSenseMode": "macos-gcc-x64"
         }
     ],
