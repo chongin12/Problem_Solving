@@ -1,0 +1,5 @@
+a=int(input())
+b=int(input())
+c=int(input())
+if b-c==0:print("0")
+else:print((b-c)//a)
