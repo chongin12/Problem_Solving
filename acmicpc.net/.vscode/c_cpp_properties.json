@@ -8,7 +8,8 @@
             "defines": [],
             "macFrameworkPath": [],
             "compilerPath": "/usr/bin/g++",
-            "intelliSenseMode": "macos-gcc-x64"
+            "intelliSenseMode": "macos-gcc-x64",
+            "cppStandard": "c++17"
         }
     ],
     "version": 4
