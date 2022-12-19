@@ -6,9 +6,11 @@
                 "${workspaceFolder}/**"
             ],
             "defines": [],
-            "macFrameworkPath": [],
-            "compilerPath": "/usr/bin/g++",
-            "intelliSenseMode": "macos-gcc-x64",
+            "macFrameworkPath": [
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            ],
+            "compilerPath": "/Library/Developer/CommandLineTools/usr/bin/g++",
+            "intelliSenseMode": "macos-clang-arm64",
             "cppStandard": "c++17"
         }
     ],
