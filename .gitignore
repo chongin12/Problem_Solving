@@ -42,3 +42,6 @@
 
 # CPH
 *.prob
+
+# vscode settings
+**/.vscode/
