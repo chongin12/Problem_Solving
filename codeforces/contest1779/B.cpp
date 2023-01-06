@@ -1,10 +1,13 @@
 #include <bits/stdc++.h>
+#include <stdio.h>
 using namespace std;
 using ll=long long;
 using pii=pair<int,int>;
 using pll=pair<ll,ll>;
 int main(){
     ios::sync_with_stdio(0); cin.tie(0);
+
+    cout << "qwerqwer" << '\n';
     int T; cin>>T;
     while(T--){
         int n; cin>>n;
