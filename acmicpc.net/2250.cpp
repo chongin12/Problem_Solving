@@ -6,10 +6,6 @@ pair<int,int> G[10001];
 pair<int,int> arr[10001]; // {왼쪽끝, 오른쪽끝}
 int cannotRoot[10001];
 int cnt=1;
-void init(){
-    for(int i=0; i<10001; ++i) arr[i]={0,0};
-    cnt=1;
-}
 void f(int u, int depth){
     if(G[u].x!=-1){
         f(G[u].x, depth+1);
@@ -20,7 +16,6 @@ void f(int u, int depth){
     if(G[u].y!=-1){
         f(G[u].y, depth+1);
     }
-
 }
 int main(){
     ios::sync_with_stdio(0); cin.tie(0);
@@ -34,15 +29,15 @@ int main(){
     pair<int,int> res(1,1); // {레벨, 너비}
     for(int root=1; root<=N; ++root){
         if(cannotRoot[root]) continue;
-        init();
         f(root, 1);
         for(int i=1; i<=N; ++i){
-            if(arr[i].x==0) continue;
+            if(arr[i].x==0) break;
             if(arr[i].x!=0 && arr[i].y==0) arr[i].y=arr[i].x;
             if(arr[i].y-arr[i].x+1>res.y){
                 res={i,arr[i].y-arr[i].x+1};
             }
         }
+        break;
     }
     cout << res.x << " " << res.y << '\n';
 }
