@@ -6,7 +6,6 @@ vector<int> G[MN], R[MN], V, sccG[MN];
 pair<int,int> numOfGrp[MN]; // {필수, 나머지}
 vector<vector<int>> SCC;
 int dp[MN][MN];
-int dpR[MN][MN];
 void AddEdge(int s, int e){
     G[s].push_back(e);
     R[e].push_back(s);
@@ -28,7 +27,7 @@ void DFS2(int v, int sccNum){
         }
     }
 }
-int GetSCC() { // return : Scc 개수
+void GetSCC() {
     for(int i=1; i<=N; ++i){
         if(!visited[i]){
             DFS1(i);
@@ -42,7 +41,6 @@ int GetSCC() { // return : Scc 개수
             DFS2(it, ++cnt);
         }
     }
-    return cnt;
 }
 int main(){
     ios::sync_with_stdio(0); cin.tie(0);
@@ -58,7 +56,6 @@ int main(){
             numOfGrp[sccnum[it]].first++;
         }
         for(auto it:vec) {
-            // cout << it << ' ';
             for(auto itt:G[it]){
                 if(sccnum[it]!=sccnum[itt]){
                     sccG[sccnum[it]].push_back(sccnum[itt]);
@@ -67,45 +64,28 @@ int main(){
             }
         }
         vec.erase(unique(vec.begin(), vec.end()), vec.end());
-        // cout << '\n';
     }
     vector<pair<int,int> > v;
     v.emplace_back(0,0);
     for(int i=1; i<=SCC.size(); ++i){
-        // cout << i << " -> ";
-        // for(auto it:sccG[i]){
-        //     cout << it << " ";
-        // }
-        // cout << " | (" << numOfGrp[i].first << ", " << numOfGrp[i].second << ")";
-        // cout << '\n';
-        if(sccG[i].size() == 0) v.emplace_back(numOfGrp[i].first, numOfGrp[i].second);
+        if(sccG[i].size() == 0) {
+            int min_ = numOfGrp[i].first;
+            int max_ = numOfGrp[i].first + numOfGrp[i].second;
+            v.emplace_back(min_, max_);
+        }
     }
     for(int i=1; i<v.size(); ++i){
-        // cout << "v[" << i <<"].first="<<v[i].first << '\n';
         for(int j=0; j<v[i].first; ++j){
             dp[i][j]=dp[i-1][j];
-            dpR[i][j] = j;
         }
         for(int j=v[i].first; j<=K; ++j){
             if(dp[i-1][j] < dp[i-1][j-v[i].first] + v[i].first){
-                dp[i][j] = dp[i-1][j-v[i].first] + v[i].first;
-                dpR[i][j] = j-v[i].first;
+                dp[i][j] = dp[i-1][j-v[i].first] + v[i].second;
             }
             else {
                 dp[i][j] = dp[i-1][j];
-                dpR[i][j] = j;
             }
         }
     }
-    int lo=0, hi=0;
-    int tmp=K;
-    for(int i=v.size()-1; i>=1; --i){
-        if(dpR[i][tmp] != tmp){
-            lo+=v[i].first;
-            hi+=v[i].first + v[i].second;
-            tmp = dpR[i][tmp];
-        }
-    }
-    // cout << "lo : " << lo << ", hi : " << hi << '\n';
-    cout << min(hi, K) << '\n';
+    cout << min(dp[v.size()-1][K], K) << '\n';
 }
