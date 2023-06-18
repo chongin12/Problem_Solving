@@ -1,0 +1,10 @@
+n=int(input())
+a1=min(n+8, 210)
+a2=min(n+4, 220)
+a3=min(n+2, 230)
+a4=min(n+1, 240)
+l=[a1,a2,a3,a4]
+if a4==max(l):print(4)
+elif a3==max(l):print(3)
+elif a2==max(l):print(2)
+else:print(1)
