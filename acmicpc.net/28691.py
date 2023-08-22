@@ -1,0 +1,6 @@
+s=input()
+if s=="M":print("MatKor")
+if s=="W":print("WiCys")
+if s=="C":print("CyKor")
+if s=="A":print("AlKor")
+if s=="$":print("$clear")
