@@ -1,0 +1,7 @@
+a, b = map(int,input().split())
+A = set(map(int,input().split()))
+B = set(map(int,input().split()))
+C = list(A-B)
+C.sort()
+print(len(C))
+print(' '.join(map(str,C)))
