@@ -1,12 +1,10 @@
 CXX = g++
 CXXFLAGS = -std=c++17
-TARGET = 1249
-SRC = 1249.cpp
 
 all: $(TARGET)
 
-$(TARGET): $(SRC)
-	$(CXX) -o $@ $< $(CXXFLAGS)
+$(TARGET):
+	$(CXX) -o $@ $< $(CXXFLAGS) && ./$(TARGET) 
 
 run: $(TARGET)
 	./$(TARGET)
