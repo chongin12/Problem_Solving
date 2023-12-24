@@ -1,0 +1,5 @@
+a=float(input())
+b=float(input())
+c=float(input())
+if min(a,b)/c>=2.0 and max(a,b)/min(a,b)<=2.0:print("good")
+else:print("bad")
