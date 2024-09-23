@@ -1,0 +1,1 @@
+print("B" if input()=="1" else "A")
