@@ -19,7 +19,7 @@ struct Trie {
     void insert(const char * key, int len) {
         if(*key=='\0'){
             chk=true;
-            length = max(length, len);
+            length = len;
             return;
         }
         int idx = *key - 'a';
