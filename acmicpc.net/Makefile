@@ -9,7 +9,7 @@ all:
 
 # .cpp 파일에 대응되는 컴파일 규칙
 %: %.cpp
-	$(CXX) $(CXXFLAGS) -o $@ $< && ./$(<:.cpp=)
+	$(CXX) $(CXXFLAGS) -o $@ $<
 
 # .py 파일에 대응되는 컴파일 규칙
 %: %.py
