@@ -1,0 +1,5 @@
+a,b,c,d=map(int,input().split())
+if a+b>d and c>d:print("T.T")
+elif a+b<=d and c<=d:print("~.~")
+elif a+b<=d:print("Shuttle")
+else:print("Walk")
