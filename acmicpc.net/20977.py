@@ -1,0 +1,5 @@
+n=int(input())
+a=input().replace('J', 'A').replace('O', 'B').replace('I', 'C')
+a=''.join(sorted(a))
+a=a.replace('A', 'J').replace('B', 'O').replace('C', 'I')
+print(a)
